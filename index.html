@@ -11,132 +11,256 @@
 <meta name="theme-color" content="#EFEFEF">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap">
+<style>
+:root{--bg:#EFEFEF;--g:#97C164;--gd:#5E8F2E;--k:#0B0B0B;--w:#fff;--mut:#6b6b6b;--line:#dcdcdc;--max:520px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:104px;-webkit-text-size-adjust:100%}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  background:#d9d9d6;color:var(--k);line-height:1.5;word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:var(--max);margin:0 auto;background:var(--bg);min-height:100vh;box-shadow:0 0 40px rgba(0,0,0,.08)}
+a{color:inherit}
+img{display:block;max-width:100%}
+.disp{font-family:"Archivo Black","Pretendard Variable",sans-serif;letter-spacing:-.01em}
 
-<link rel="stylesheet" href="css/style.css?v=11071630">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="apple-mobile-web-app-title" content="WCF 쇼가이드">
+/* top bar */
+.bar{position:fixed;top:0;left:0;right:0;margin:0 auto;max-width:var(--max);z-index:20;background:rgba(239,239,239,.94);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid var(--line);transform:translateY(-105%);transition:transform .25s ease}
+.bar.on{transform:none}
+.bar-top{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 6px}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:800;font-size:13px;line-height:1.05;letter-spacing:.02em}
+.brand img{height:27px;width:auto}
+.lang{display:inline-flex;border:1.5px solid var(--k);border-radius:99px;overflow:hidden;font-size:12px;font-weight:800}
+.lang span,.lang a{padding:4px 11px;text-decoration:none}
+.lang span{background:var(--k);color:var(--w)}
+.dock{display:flex;gap:6px;overflow-x:auto;padding:4px 16px 10px;scrollbar-width:none}
+.dock::-webkit-scrollbar{display:none}
+.dock a{flex:none;font-size:13px;font-weight:700;text-decoration:none;padding:6px 12px;border-radius:99px;background:var(--w);border:1px solid var(--line);white-space:nowrap}
+.dock a.cur{background:var(--k);color:var(--w);border-color:var(--k)}
+
+/* cover */
+.cover{position:relative;background:var(--bg)}
+.cover img{width:100%;height:auto}
+.home{position:relative}
+.home-lang{position:absolute;top:40px;right:20px;background:var(--w)}
+.cover-cta{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--k);color:var(--w);text-decoration:none;
+  font-weight:800;font-size:16px;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+.cover-cta svg{width:20px;height:20px;fill:none;stroke:var(--g);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
+
+/* home */
+.home{padding:40px 20px 28px}
+.ed{font-family:"Archivo Black",sans-serif;color:var(--g);font-size:28px;line-height:1}
+.home h1{font-size:26px;font-weight:900;letter-spacing:-.02em;margin:4px 0 14px}
+.theme{font-family:"Archivo Black",sans-serif;font-size:52px;line-height:.92;letter-spacing:-.02em;margin-bottom:26px}
+.info{background:var(--w);border-radius:16px;padding:6px 16px}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:16px;padding:11px 0;border-bottom:1px solid var(--bg);font-size:15px}
+.kv:last-child{border:0}
+.kv dt{font-weight:800;color:var(--gd);font-size:13px;padding-top:2px}
+.kv dd{font-weight:600}
+.mh{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin:30px 0 10px;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-radius:16px;overflow:hidden}
+.tile{position:relative;aspect-ratio:1;display:block;text-decoration:none;transition:filter .15s;overflow:hidden}
+.tile img{width:100%;height:100%;object-fit:cover}
+.tile:active{filter:brightness(.9)}
+.tile .ti svg{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.tile .ti svg .f{fill:currentColor;stroke:none}
+.tlb{position:absolute;left:6px;right:6px;bottom:6px;background:var(--w);color:var(--k);border-radius:8px;padding:4px 6px;text-align:center;font-size:12px;font-weight:800;line-height:1.2;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.tile{min-width:0}
+.tile.long .tlb{font-size:10.5px}
+.t-g{background:var(--g);color:var(--k)}
+.t-k{background:var(--k);color:var(--g)}
+.t-k .tlb{color:var(--w)}
+.t-l{background:var(--w);color:var(--k)}
+
+/* sections */
+.sec{padding:34px 20px 30px;border-top:8px solid var(--w)}
+.sh{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.sh-ic{flex:none;width:52px;height:52px;border-radius:14px;object-fit:cover}
+.sh-ic svg{width:32px;height:32px;fill:none;stroke:var(--k);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.sh-ic svg .f{fill:var(--k);stroke:none}
+.sh h2{font-size:23px;font-weight:900;letter-spacing:-.02em;line-height:1.2}
+.when{font-weight:700;font-size:15px;margin-top:2px}
+.chip{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;background:var(--k);color:var(--w);padding:3px 10px;border-radius:99px}
+time{font-variant-numeric:tabular-nums;font-weight:800;font-size:13px;color:var(--gd)}
+.dh{font-size:17px;font-weight:900;margin:22px 0 10px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.dh small{font-size:13px;color:var(--mut);font-weight:700}
+.dh .course{font-size:12px;background:var(--g);padding:2px 9px;border-radius:99px;font-weight:800}
+.sec>.dh:first-of-type{margin-top:4px}
+
+/* live state */
+.live{display:none}
+.is-now,.is-next{position:relative}
+.is-now{outline:2.5px solid var(--g);outline-offset:-2.5px}
+.is-now>.live,.is-next>.live,.is-now .live,.is-next .live{display:inline-block;position:absolute;top:10px;right:10px;font-style:normal;font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px}
+.is-now .live{background:var(--g);color:var(--k)}
+.is-next .live{background:var(--k);color:var(--w)}
+.is-now .live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--k);margin-right:5px;vertical-align:1px;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.is-past{opacity:.45}
+
+/* glance */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
+.tabs button{font:inherit;border:1.5px solid var(--k);background:var(--w);border-radius:12px;padding:8px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;color:var(--k)}
+.tabs b{font-size:16px;font-weight:900}
+.tabs small{font-size:11px;font-weight:700}
+.tabs button[aria-selected=true]{background:var(--k);color:var(--w)}
+.tabs button[aria-selected=true] small{color:var(--g)}
+.pane{list-style:none;display:grid;gap:8px}
+.pane[hidden]{display:none}
+.gi a{border-left:8px solid var(--pc,var(--g));display:grid;grid-template-columns:62px 1fr;grid-template-rows:auto auto;column-gap:12px;background:var(--w);border-radius:14px;padding:13px 14px;text-decoration:none;position:relative}
+.gi time{grid-row:1/3;font-size:15px;color:var(--k);line-height:1.15;display:flex;flex-direction:column}
+.gi time i{font-style:normal;font-size:12px;color:var(--mut);font-weight:600}
+.gp{font-weight:800;font-size:16px;padding-right:56px}
+.gr{font-size:12.5px;color:var(--mut);font-weight:600}
+.gi.is-now a{outline:2.5px solid var(--g);outline-offset:-2.5px}
+.gi.is-now{outline:0}
+
+/* stage timeline */
+.tl{list-style:none;display:grid;gap:8px}
+.talk{background:var(--w);border-radius:16px;padding:14px 16px 16px;border-left:6px solid var(--c)}
+.cat{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.04em;color:var(--w);background:var(--c);padding:2px 9px;border-radius:99px;margin-bottom:6px}
+.talk time{display:block}
+.who{display:flex;gap:12px;align-items:center;margin:8px 0 8px}
+.who img{width:56px;height:56px;border-radius:50%;object-fit:cover;background:var(--bg);flex:none}
+.who b{display:block;font-size:17px;font-weight:900;line-height:1.25}
+.who small{display:block;font-size:13px;color:var(--mut);font-weight:600}
+.topic{font-size:15px;font-weight:700;line-height:1.45}
+.brk{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;padding:11px 16px;border-radius:12px;background:transparent;border:1.5px dashed #c6c6c6;font-size:14.5px}
+.brk b{font-weight:800}
+.brk time{color:var(--mut)}
+.pair{background:var(--g);border:0;flex-direction:column;gap:4px;padding:16px}
+.pair time{color:var(--k)}
+.pair p{font-size:14px;font-weight:500;line-height:1.55}
+.pair small{font-size:12px;font-weight:800}
+.galar{background:var(--k);border:0;color:var(--w)}
+.galar time{color:var(--g)}
+.galar a{text-decoration:none}
+
+/* origin */
+.dcols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dcol h4{font-size:16px;font-weight:900;background:var(--k);color:var(--w);border-radius:12px 12px 0 0;padding:8px 12px}
+.dcol h4 small{color:var(--g);font-size:12px}
+.simple{list-style:none;background:var(--w);border-radius:0 0 12px 12px}
+.simple li{padding:12px;border-top:1px solid var(--bg)}
+.simple li:first-child{border:0}
+.simple b{display:block;font-size:14.5px;font-weight:800;line-height:1.3;margin-top:2px}
+.simple .is-now .live,.simple .is-next .live{position:static;margin-top:6px}
+
+/* cards */
+.cards{list-style:none;display:grid;gap:8px}
+.card{background:var(--w);border-radius:14px;padding:14px 16px}
+.card .topic{margin:3px 0 10px;padding-right:44px}
+.who.sm{margin:0}
+.who.sm img{width:42px;height:42px}
+.ph{display:flex;flex:none}
+.ph.two img+img{margin-left:-12px;border:2px solid var(--w)}
+.who.sm b{font-size:14.5px;font-weight:800}
+.who.sm small{font-size:12.5px}
+.by{font-size:13.5px;font-weight:700;color:var(--mut)}
+
+.desc{background:var(--w);border-radius:16px;padding:16px 18px;font-size:15px;line-height:1.65;font-weight:500}
+.champs{display:grid;gap:10px}
+.champ{display:flex;gap:16px;align-items:center;background:var(--k);color:var(--w);border-radius:18px;padding:18px}
+.champ img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--g)}
+.champ time{color:var(--g);display:block}
+.champ b{display:block;font-size:22px;font-weight:900;line-height:1.2}
+.champ small{display:block;line-height:1.4;font-size:13px;color:#bdbdbd;font-weight:700}
+
+.dark{background:var(--k);color:var(--w);border-top-color:var(--g)}
+.dark .when{color:var(--g)}
+.dark .chip{background:var(--g);color:var(--k)}
+.badge{width:min(260px,70%);height:auto;margin:0 auto 20px}
+.gala-t{font-family:"Archivo Black",sans-serif;font-size:40px;line-height:.95;color:var(--g);margin:0 0 18px}
+.dark .desc{background:#1d1d1d;color:var(--w)}
+
+/* venue */
+.addr{font-weight:800;font-size:16px}
+.rooms{list-style:none;margin:10px 0 14px;display:grid;gap:6px}
+.rooms li{background:var(--w);border-radius:12px;padding:10px 12px;font-weight:700;font-size:14.5px;display:flex;gap:10px;align-items:center}
+.fl{background:var(--g);font-weight:900;font-size:12px;padding:2px 8px;border-radius:6px}
+.btn{display:block;text-align:center;font-weight:800;text-decoration:none;border:1.5px solid var(--k);border-radius:12px;padding:12px;background:var(--w)}
+.contact{list-style:none;display:grid;gap:6px}
+.contact li{display:flex;gap:12px;align-items:center;background:var(--w);border-radius:12px;padding:11px 12px;font-weight:700}
+.contact span{width:26px;height:26px;border-radius:50%;background:var(--k);color:var(--g);display:grid;place-items:center;font-size:12px;font-weight:900;flex:none}
+.contact a{text-decoration:none}
+.logos{background:var(--w);border-radius:16px;padding:16px;margin-top:22px}
+.logos h5{font-size:12px;font-weight:800;color:var(--mut);margin:0 0 8px}
+.logos img+h5{margin-top:16px}
+.note{font-size:12px;color:var(--mut);margin-top:16px}
+
+footer{background:var(--k);color:#a9a9a9;padding:26px 20px calc(30px + env(safe-area-inset-bottom,0px));font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+footer a{color:var(--g);font-weight:800;text-decoration:none;white-space:nowrap}
+.fab{position:fixed;right:max(16px,calc(50% - var(--max)/2 + 16px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:15;width:44px;height:44px;border-radius:50%;
+  background:var(--k);color:var(--g);display:grid;place-items:center;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.on{opacity:1;pointer-events:auto}
+.fab svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+@media (min-width:400px){.theme{font-size:60px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cover-cta svg,.is-now .live::before{animation:none}}
+</style>
 </head>
-<body data-base="" class="home-page">
+<body>
 <div class="wrap">
+<div class="bar" id="bar">
+  <div class="bar-top">
+    <a class="brand" href="#home"><img src="assets/wcf-logo.png" alt="15th World Coffee Forum · 제15회 월드커피포럼 · 11-14 Nov. 2026 | Coex, Seoul" width="180" height="27"></a>
+    <span class="lang"><span>KO</span><a href="en/">EN</a></span>
+  </div>
+  <nav class="dock" id="dock"><a href="#glance">한눈에 보는 일정</a><a href="#stage">The Stage</a><a href="#origin">Origin Discovery</a><a href="#sessions">The Sessions</a><a href="#sca">SCA Education</a><a href="#futures">Coffee Futures Challenge</a><a href="#champion">Champion Live</a><a href="#gala">Asia-Pacific&#x27;s 100 Best Coffee Shops GALA</a><a href="#venue">장소 · 문의</a></nav>
+</div>
 <section class="cover" id="top">
   <img src="assets/poster.jpg" alt="제15회 월드커피포럼 — WHY WE DRINK COFFEE? · Nov. 11–14, 2026 · Coex, Seoul, Korea" width="1374" height="2576" fetchpriority="high">
-  <span class="vig" aria-hidden="true"></span>
-  
+  <a class="cover-cta" href="#home"><span>쇼가이드 보기</span><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
 </section>
-<a class="cue" href="#home" aria-label="쇼가이드 보기"><span>Show Guide</span><i aria-hidden="true"></i></a>
 <section id="home" class="home">
   <span class="lang home-lang"><span>KO</span><a href="en/">EN</a></span>
+  <p class="ed">15th</p>
+  <h1>제15회 월드커피포럼</h1>
   <p class="theme">WHY WE<br>DRINK<br>COFFEE?</p>
-  <div class="intro">
-    <p>매일 마시지만, 제대로 물어본 적 없는 질문.<br>당신은 왜 커피를 마시나요?<br>그 질문에서 2026 월드커피포럼이 시작됩니다.</p>
-    <p>우리가 커피를 마시는 이유는 저마다 다르지만,<br>그 한 잔에는 생각보다 더 많은 이야기가 담겨 있습니다.</p>
-    <p>커피를 마시는 이유를 넘어,<br>커피가 만들어 가는 다양한 이야기와 가능성을 만나는 곳.<br>2026 월드커피포럼에서 당신만의 커피 이야기를 만나보세요.</p>
-  </div>
-  <a class="more-lk" href="about.html">포럼 개요 보기 <i aria-hidden="true">→</i></a>
+  <dl class="info"><div class="kv"><dt>일시</dt><dd>2026년 11월 11일(수) ~ 14일(토), 4일간</dd></div><div class="kv"><dt>장소</dt><dd>코엑스 컨퍼런스룸 3, 4층</dd></div><div class="kv"><dt>주제</dt><dd>WHY WE DRINK COFFEE?</dd></div><div class="kv"><dt>주최</dt><dd>월드커피포럼 조직위원회</dd></div></dl>
+  <h3 class="mh">프로그램</h3>
+  <nav class="grid"><a class="tile" href="#glance"><img src="assets/tiles/glance.jpg" alt="" width="360" height="360"><span class="tlb">한눈에 보는 일정</span></a><a class="tile" href="#stage"><img src="assets/tiles/stage.jpg" alt="" width="360" height="360"><span class="tlb">The Stage</span></a><a class="tile" href="#origin"><img src="assets/tiles/origin.jpg" alt="" width="360" height="360"><span class="tlb">Origin Discovery</span></a><a class="tile" href="#sessions"><img src="assets/tiles/sessions.jpg" alt="" width="360" height="360"><span class="tlb">The Sessions</span></a><a class="tile" href="#sca"><img src="assets/tiles/sca.jpg" alt="" width="360" height="360"><span class="tlb">SCA Education</span></a><a class="tile long" href="#futures"><img src="assets/tiles/futures.jpg" alt="" width="360" height="360"><span class="tlb">Coffee Futures Challenge</span></a><a class="tile" href="#champion"><img src="assets/tiles/champion.jpg" alt="" width="360" height="360"><span class="tlb">Champion Live</span></a><a class="tile long" href="#gala"><img src="assets/tiles/gala.jpg" alt="" width="360" height="360"><span class="tlb">Asia-Pacific&#x27;s 100 Best Coffee Shops GALA</span></a><a class="tile" href="#venue"><img src="assets/tiles/venue.jpg" alt="" width="360" height="360"><span class="tlb">장소 · 문의</span></a></nav>
 </section>
 <section id="glance" class="sec">
-  <header class="sh"><img class="sh-ic" src="assets/tiles/glance-ic.jpg" alt="" width="52" height="52"><div><h2>한눈에 보는 월커포</h2><p class="when">11.11 – 11.14 · 코엑스 컨퍼런스룸 3·4층</p></div></header>
-  <div class="vt" role="tablist" aria-label="보기 방식"><button role="tab" data-v="prog" aria-selected="true">프로그램 보기</button><button role="tab" data-v="tt" aria-selected="false">타임테이블 보기</button></div>
-  <div class="vp" id="programs" data-v="prog">
-  <p class="sub-d">프로그램을 고르면 세션 목록과 상세 안내로 이동합니다.</p>
-  <h4 class="ev-h first">Main Program</h4>
-  <nav class="grid pbg"><a class="pb k-stage" href="session.html?prog=stage"><span class="pb-hd"><span>WCF 2026</span><span>401</span></span><span class="pb-t">The Stage</span><span class="pb-d">11.12<br>목</span><i class="pb-pat"></i></a><a class="pb k-sess" href="session.html?prog=sessions"><span class="pb-hd"><span>WCF 2026</span><span>301</span></span><span class="pb-t">The Sessions</span><span class="pb-d">11.11–14<br>수–토</span><i class="pb-pat"></i></a><a class="pb k-orig" href="session.html?prog=origin"><span class="pb-hd"><span>WCF 2026</span><span>300</span></span><span class="pb-t">Origin Discovery</span><span class="pb-d">11.11–12<br>수–목</span><i class="pb-pat"></i></a><a class="pb k-champ" href="session.html?prog=champion"><span class="pb-hd"><span>WCF 2026</span><span>318</span></span><span class="pb-t">Champion Live</span><span class="pb-d">11.14<br>토</span><i class="pb-pat"></i></a><a class="pb k-sca" href="session.html?prog=sca"><span class="pb-hd"><span>WCF 2026</span><span>317</span></span><span class="pb-t">SCA Education</span><span class="pb-d">11.12–14<br>목–토</span><i class="pb-pat"></i></a><a class="pb k-fut" href="session.html?prog=futures"><span class="pb-hd"><span>WCF 2026</span><span>300</span></span><span class="pb-t">Coffee Futures Challenge</span><span class="pb-d">11.13<br>금</span><i class="pb-pat"></i></a></nav>
-  <h4 class="ev-h">Event</h4>
-  <nav class="grid pbg ev"><a class="pb k-pair" href="session.html?id=stage-pair"><span class="pb-hd"><span>WCF 2026</span><span>401 Lobby</span></span><span class="pb-t">Pairing Table</span><span class="pb-d">11.12<br>목 14:00</span><i class="pb-pat"></i></a><a class="pb k-dj" href="session.html?id=stage-dj"><span class="pb-hd"><span>WCF 2026</span><span>401 Lobby</span></span><span class="pb-t">DJ Set</span><span class="pb-d">11.12<br>목 16:30</span><i class="pb-pat"></i></a><a class="pb k-gala" href="session.html?id=gala-1"><span class="pb-hd"><span>WCF 2026</span><span>401</span></span><span class="pb-t">AP100BCS GALA</span><span class="pb-d">11.12<br>목 17:00</span><i class="pb-pat"></i></a></nav>
-  </div>
-  <div class="vp" id="timetable" data-v="tt" hidden>
-  <p class="sub-d">날짜를 고른 뒤 블록을 누르면 세션 상세 안내로 이동합니다.</p>
+  <header class="sh"><img class="sh-ic" src="assets/tiles/glance-ic.jpg" alt="" width="52" height="52"><div><h2>한눈에 보는 일정</h2><p class="when">날짜별 전체 일정</p></div></header>
   <div class="tabs" role="tablist"><button role="tab" data-day="11.11" aria-selected="false"><b>11.11</b><small>수</small></button><button role="tab" data-day="11.12" aria-selected="false"><b>11.12</b><small>목</small></button><button role="tab" data-day="11.13" aria-selected="false"><b>11.13</b><small>금</small></button><button role="tab" data-day="11.14" aria-selected="false"><b>11.14</b><small>토</small></button></div>
-  <div class="pane tg" data-day="11.11" hidden style="--n:2"><div class="tg-h"><span></span><span>3F 301호</span><span>3F 300호</span></div><div class="tg-b" style="height:640px"><i class="tg-l" style="top:0px"></i><span class="tg-t" style="top:0px">09:00</span><i class="tg-l" style="top:64px"></i><span class="tg-t" style="top:64px">10:00</span><i class="tg-l" style="top:128px"></i><span class="tg-t" style="top:128px">11:00</span><i class="tg-l" style="top:192px"></i><span class="tg-t" style="top:192px">12:00</span><i class="tg-l" style="top:256px"></i><span class="tg-t" style="top:256px">13:00</span><i class="tg-l" style="top:320px"></i><span class="tg-t" style="top:320px">14:00</span><i class="tg-l" style="top:384px"></i><span class="tg-t" style="top:384px">15:00</span><i class="tg-l" style="top:448px"></i><span class="tg-t" style="top:448px">16:00</span><i class="tg-l" style="top:512px"></i><span class="tg-t" style="top:512px">17:00</span><i class="tg-l" style="top:576px"></i><span class="tg-t" style="top:576px">18:00</span><a class="tg-e dk" href="session.html?id=origin-1" data-d="11.11" data-s="10:30" data-e="12:30" style="--i:1;top:96px;height:125px;--c:#6E6FB2"><b>Coffee Board of India</b><small>10:30–12:30</small></a><a class="tg-e" href="session.html?id=session-1" data-d="11.11" data-s="13:00" data-e="15:00" style="--i:0;top:256px;height:125px;--c:#F0864C"><b>세션 1</b><small>13:00–15:00</small><small>송호석</small></a><a class="tg-e dk" href="session.html?id=origin-2" data-d="11.11" data-s="13:30" data-e="15:30" style="--i:1;top:288px;height:125px;--c:#6E6FB2"><b>El Injerto</b><small>13:30–15:30</small></a><a class="tg-e" href="session.html?id=session-2" data-d="11.11" data-s="15:30" data-e="17:30" style="--i:0;top:416px;height:125px;--c:#F0864C"><b>세션 2</b><small>15:30–17:30</small><small>차미경</small></a><a class="tg-e dk" href="session.html?id=origin-3" data-d="11.11" data-s="16:00" data-e="18:00" style="--i:1;top:448px;height:125px;--c:#6E6FB2"><b>Guatemalan Coffees</b><small>16:00–18:00</small></a></div></div><div class="pane tg" data-day="11.12" hidden style="--n:4"><div class="tg-h"><span></span><span>4F 401호</span><span>3F 301호</span><span>3F 300호</span><span>3F 317호</span></div><div class="tg-b" style="height:640px"><i class="tg-l" style="top:0px"></i><span class="tg-t" style="top:0px">09:00</span><i class="tg-l" style="top:64px"></i><span class="tg-t" style="top:64px">10:00</span><i class="tg-l" style="top:128px"></i><span class="tg-t" style="top:128px">11:00</span><i class="tg-l" style="top:192px"></i><span class="tg-t" style="top:192px">12:00</span><i class="tg-l" style="top:256px"></i><span class="tg-t" style="top:256px">13:00</span><i class="tg-l" style="top:320px"></i><span class="tg-t" style="top:320px">14:00</span><i class="tg-l" style="top:384px"></i><span class="tg-t" style="top:384px">15:00</span><i class="tg-l" style="top:448px"></i><span class="tg-t" style="top:448px">16:00</span><i class="tg-l" style="top:512px"></i><span class="tg-t" style="top:512px">17:00</span><i class="tg-l" style="top:576px"></i><span class="tg-t" style="top:576px">18:00</span><a class="tg-e sh" href="session.html?id=stage-open" data-d="11.12" data-s="10:00" data-e="10:30" style="--i:0;top:64px;height:29px;--c:#96C263"><b>개회</b></a><a class="tg-e" href="session.html?id=sca-1" data-d="11.12" data-s="10:00" data-e="12:00" style="--i:3;top:64px;height:125px;--c:#25A3D5"><b>One Day Coffee Explorer</b><small>10:00–12:00</small><small>1회차</small></a><a class="tg-e sh" href="session.html?id=stage-1" data-d="11.12" data-s="10:30" data-e="11:00" style="--i:0;top:96px;height:29px;--c:#96C263"><b>피터 줄리아노</b></a><a class="tg-e" href="session.html?id=session-3" data-d="11.12" data-s="10:30" data-e="12:30" style="--i:1;top:96px;height:125px;--c:#F0864C"><b>세션 3</b><small>10:30–12:30</small><small>이준선</small></a><a class="tg-e dk" href="session.html?id=origin-4" data-d="11.12" data-s="10:30" data-e="12:30" style="--i:2;top:96px;height:125px;--c:#6E6FB2"><b>IWCA</b><small>10:30–12:30</small></a><a class="tg-e sh" href="session.html?id=stage-2" data-d="11.12" data-s="11:00" data-e="11:30" style="--i:0;top:128px;height:29px;--c:#96C263"><b>조희경</b></a><a class="tg-e sh" href="session.html?id=stage-3" data-d="11.12" data-s="13:00" data-e="13:30" style="--i:0;top:256px;height:29px;--c:#96C263"><b>양태오</b></a><a class="tg-e" href="session.html?id=session-4" data-d="11.12" data-s="13:00" data-e="15:00" style="--i:1;top:256px;height:125px;--c:#F0864C"><b>세션 4</b><small>13:00–15:00</small><small>이규범 외</small></a><a class="tg-e" href="session.html?id=sca-2" data-d="11.12" data-s="13:00" data-e="15:00" style="--i:3;top:256px;height:125px;--c:#25A3D5"><b>One Day Coffee Explorer</b><small>13:00–15:00</small><small>2회차</small></a><a class="tg-e sh" href="session.html?id=stage-4" data-d="11.12" data-s="13:30" data-e="14:00" style="--i:0;top:288px;height:29px;--c:#96C263"><b>김규림</b></a><a class="tg-e dk" href="session.html?id=origin-5" data-d="11.12" data-s="13:30" data-e="15:30" style="--i:2;top:288px;height:125px;--c:#6E6FB2"><b>Café de Honduras</b><small>13:30–15:30</small></a><a class="tg-e sh" href="session.html?id=stage-pair" data-d="11.12" data-s="14:00" data-e="14:30" style="--i:0;top:320px;height:29px;--c:#D7E8C4"><b>페어링 테이블</b></a><a class="tg-e sh" href="session.html?id=stage-5" data-d="11.12" data-s="14:30" data-e="15:00" style="--i:0;top:352px;height:29px;--c:#96C263"><b>안치훈</b></a><a class="tg-e sh" href="session.html?id=stage-fireside" data-d="11.12" data-s="15:00" data-e="15:40" style="--i:0;top:384px;height:40px;--c:#96C263"><b>패널 토크</b></a><a class="tg-e" href="session.html?id=session-5" data-d="11.12" data-s="15:30" data-e="17:30" style="--i:1;top:416px;height:125px;--c:#F0864C"><b>세션 5</b><small>15:30–17:30</small><small>권혁수</small></a><a class="tg-e sh" href="session.html?id=stage-award" data-d="11.12" data-s="15:40" data-e="16:30" style="--i:0;top:427px;height:50px;--c:#96C263"><b>시상식</b></a><a class="tg-e dk" href="session.html?id=origin-6" data-d="11.12" data-s="16:00" data-e="18:00" style="--i:2;top:448px;height:125px;--c:#6E6FB2"><b>Coffee Board of India</b><small>16:00–18:00</small></a><a class="tg-e" href="session.html?id=sca-3" data-d="11.12" data-s="16:00" data-e="18:00" style="--i:3;top:448px;height:125px;--c:#25A3D5"><b>One Day Coffee Explorer</b><small>16:00–18:00</small><small>3회차</small></a><a class="tg-e sh" href="session.html?id=stage-dj" data-d="11.12" data-s="16:30" data-e="17:00" style="--i:0;top:480px;height:29px;--c:#D7E8C4"><b>디제잉</b></a><a class="tg-e dk" href="session.html?id=gala-1" data-d="11.12" data-s="17:00" data-e="18:30" style="--i:0;top:512px;height:93px;--c:#E5484D"><b>AP100BCS GALA</b><small>17:00–18:30</small></a></div></div><div class="pane tg" data-day="11.13" hidden style="--n:3"><div class="tg-h"><span></span><span>3F 301호</span><span>3F 300호</span><span>3F 317호</span></div><div class="tg-b" style="height:640px"><i class="tg-l" style="top:0px"></i><span class="tg-t" style="top:0px">09:00</span><i class="tg-l" style="top:64px"></i><span class="tg-t" style="top:64px">10:00</span><i class="tg-l" style="top:128px"></i><span class="tg-t" style="top:128px">11:00</span><i class="tg-l" style="top:192px"></i><span class="tg-t" style="top:192px">12:00</span><i class="tg-l" style="top:256px"></i><span class="tg-t" style="top:256px">13:00</span><i class="tg-l" style="top:320px"></i><span class="tg-t" style="top:320px">14:00</span><i class="tg-l" style="top:384px"></i><span class="tg-t" style="top:384px">15:00</span><i class="tg-l" style="top:448px"></i><span class="tg-t" style="top:448px">16:00</span><i class="tg-l" style="top:512px"></i><span class="tg-t" style="top:512px">17:00</span><i class="tg-l" style="top:576px"></i><span class="tg-t" style="top:576px">18:00</span><a class="tg-e" href="session.html?id=sca-4" data-d="11.13" data-s="09:30" data-e="18:00" style="--i:2;top:32px;height:541px;--c:#25A3D5"><b>All about Q</b><small>09:30–18:00</small></a><a class="tg-e" href="session.html?id=session-6" data-d="11.13" data-s="10:00" data-e="11:00" style="--i:0;top:64px;height:61px;--c:#F0864C"><b>세션 6</b><small>10:00–11:00</small></a><a class="tg-e" href="session.html?id=session-7" data-d="11.13" data-s="11:30" data-e="12:30" style="--i:0;top:160px;height:61px;--c:#F0864C"><b>세션 7</b><small>11:30–12:30</small></a><a class="tg-e" href="session.html?id=session-8" data-d="11.13" data-s="13:00" data-e="15:00" style="--i:0;top:256px;height:125px;--c:#F0864C"><b>세션 8</b><small>13:00–15:00</small><small>김의성</small></a><a class="tg-e" href="session.html?id=futures-1" data-d="11.13" data-s="13:00" data-e="18:00" style="--i:1;top:256px;height:317px;--c:#BFBFBF"><b>Coffee Futures Challenge</b><small>13:00–18:00</small></a><a class="tg-e" href="session.html?id=session-9" data-d="11.13" data-s="15:30" data-e="17:30" style="--i:0;top:416px;height:125px;--c:#F0864C"><b>세션 9</b><small>15:30–17:30</small><small>홍준기</small></a></div></div><div class="pane tg" data-day="11.14" hidden style="--n:3"><div class="tg-h"><span></span><span>3F 301호</span><span>3F 318호</span><span>3F 317호</span></div><div class="tg-b" style="height:640px"><i class="tg-l" style="top:0px"></i><span class="tg-t" style="top:0px">09:00</span><i class="tg-l" style="top:64px"></i><span class="tg-t" style="top:64px">10:00</span><i class="tg-l" style="top:128px"></i><span class="tg-t" style="top:128px">11:00</span><i class="tg-l" style="top:192px"></i><span class="tg-t" style="top:192px">12:00</span><i class="tg-l" style="top:256px"></i><span class="tg-t" style="top:256px">13:00</span><i class="tg-l" style="top:320px"></i><span class="tg-t" style="top:320px">14:00</span><i class="tg-l" style="top:384px"></i><span class="tg-t" style="top:384px">15:00</span><i class="tg-l" style="top:448px"></i><span class="tg-t" style="top:448px">16:00</span><i class="tg-l" style="top:512px"></i><span class="tg-t" style="top:512px">17:00</span><i class="tg-l" style="top:576px"></i><span class="tg-t" style="top:576px">18:00</span><a class="tg-e" href="session.html?id=sca-5" data-d="11.14" data-s="10:00" data-e="13:30" style="--i:2;top:64px;height:221px;--c:#25A3D5"><b>Intro to Cupping</b><small>10:00–13:30</small></a><a class="tg-e" href="session.html?id=session-10" data-d="11.14" data-s="10:30" data-e="12:30" style="--i:0;top:96px;height:125px;--c:#F0864C"><b>세션 10</b><small>10:30–12:30</small><small>임정환</small></a><a class="tg-e" href="session.html?id=champion-1" data-d="11.14" data-s="10:30" data-e="12:30" style="--i:1;top:96px;height:125px;--c:#FFE373"><b>나스 자파르</b><small>10:30–12:30</small></a><a class="tg-e" href="session.html?id=session-11" data-d="11.14" data-s="13:00" data-e="15:00" style="--i:0;top:256px;height:125px;--c:#F0864C"><b>세션 11</b><small>13:00–15:00</small><small>홍찬호</small></a><a class="tg-e" href="session.html?id=champion-2" data-d="11.14" data-s="13:30" data-e="15:30" style="--i:1;top:288px;height:125px;--c:#FFE373"><b>판웨이</b><small>13:30–15:30</small></a></div></div>
-  <!--/tt--></div>
+  <ol class="pane" data-day="11.11" hidden><li class="gi" data-d="11.11" data-s="10:30" data-e="18:00" style="--pc:#6E6FB2"><a href="#origin"><time>10:30<i>–18:00</i></time><span class="gp">Origin Discovery</span><span class="gr">3F · 컨퍼런스룸 300호</span><em class="live"></em></a></li><li class="gi" data-d="11.11" data-s="13:00" data-e="17:30" style="--pc:#F0864C"><a href="#sessions"><time>13:00<i>–17:30</i></time><span class="gp">The Sessions</span><span class="gr">3F · 컨퍼런스룸 301호</span><em class="live"></em></a></li></ol><ol class="pane" data-day="11.12" hidden><li class="gi" data-d="11.12" data-s="10:00" data-e="18:00" style="--pc:#25A3D5"><a href="#sca"><time>10:00<i>–18:00</i></time><span class="gp">SCA Education</span><span class="gr">3F · 컨퍼런스룸 317호</span><em class="live"></em></a></li><li class="gi" data-d="11.12" data-s="10:30" data-e="16:30" style="--pc:#96C263"><a href="#stage"><time>10:30<i>–16:30</i></time><span class="gp">The Stage</span><span class="gr">4F · 컨퍼런스룸 401호</span><em class="live"></em></a></li><li class="gi" data-d="11.12" data-s="10:30" data-e="17:30" style="--pc:#F0864C"><a href="#sessions"><time>10:30<i>–17:30</i></time><span class="gp">The Sessions</span><span class="gr">3F · 컨퍼런스룸 301호</span><em class="live"></em></a></li><li class="gi" data-d="11.12" data-s="10:30" data-e="18:00" style="--pc:#6E6FB2"><a href="#origin"><time>10:30<i>–18:00</i></time><span class="gp">Origin Discovery</span><span class="gr">3F · 컨퍼런스룸 300호</span><em class="live"></em></a></li><li class="gi" data-d="11.12" data-s="14:00" data-e="14:30" style="--pc:#96C263"><a href="#stage"><time>14:00<i>–14:30</i></time><span class="gp">Pairing Table</span><span class="gr">4F · 컨퍼런스룸 401호 로비</span><em class="live"></em></a></li><li class="gi" data-d="11.12" data-s="17:00" data-e="18:30" style="--pc:#639628"><a href="#gala"><time>17:00<i>–18:30</i></time><span class="gp">Asia-Pacific&#x27;s 100 Best Coffee Shops GALA</span><span class="gr">4F · 컨퍼런스룸 401호</span><em class="live"></em></a></li></ol><ol class="pane" data-day="11.13" hidden><li class="gi" data-d="11.13" data-s="09:30" data-e="18:00" style="--pc:#25A3D5"><a href="#sca"><time>09:30<i>–18:00</i></time><span class="gp">SCA Education</span><span class="gr">3F · 컨퍼런스룸 317호</span><em class="live"></em></a></li><li class="gi" data-d="11.13" data-s="10:00" data-e="17:30" style="--pc:#F0864C"><a href="#sessions"><time>10:00<i>–17:30</i></time><span class="gp">The Sessions</span><span class="gr">3F · 컨퍼런스룸 301호</span><em class="live"></em></a></li><li class="gi" data-d="11.13" data-s="13:00" data-e="17:00" style="--pc:#BFBFBF"><a href="#futures"><time>13:00<i>–17:00</i></time><span class="gp">Coffee Futures Challenge</span><span class="gr">3F · 컨퍼런스룸 300호</span><em class="live"></em></a></li></ol><ol class="pane" data-day="11.14" hidden><li class="gi" data-d="11.14" data-s="10:00" data-e="13:30" style="--pc:#25A3D5"><a href="#sca"><time>10:00<i>–13:30</i></time><span class="gp">SCA Education</span><span class="gr">3F · 컨퍼런스룸 317호</span><em class="live"></em></a></li><li class="gi" data-d="11.14" data-s="10:30" data-e="12:30" style="--pc:#FFE373"><a href="#champion"><time>10:30<i>–12:30</i></time><span class="gp">Champion Live</span><span class="gr">3F · 컨퍼런스룸 318호</span><em class="live"></em></a></li><li class="gi" data-d="11.14" data-s="10:30" data-e="15:00" style="--pc:#F0864C"><a href="#sessions"><time>10:30<i>–15:00</i></time><span class="gp">The Sessions</span><span class="gr">3F · 컨퍼런스룸 301호</span><em class="live"></em></a></li><li class="gi" data-d="11.14" data-s="13:30" data-e="15:30" style="--pc:#FFE373"><a href="#champion"><time>13:30<i>–15:30</i></time><span class="gp">Champion Live</span><span class="gr">3F · 컨퍼런스룸 318호</span><em class="live"></em></a></li></ol>
 </section>
-
-
-
-
-
-
-
+<section id="stage" class="sec"><header class="sh"><img class="sh-ic" src="assets/tiles/stage-ic.jpg" alt="" width="52" height="52"><div><h2>The Stage</h2><p class="when">11월 12일(목)</p><span class="chip">4F · 컨퍼런스룸 401호</span></div></header><ol class="tl"><li class="talk" data-d="11.12" data-s="10:30" data-e="11:00" style="--c:#8DBE5A"><span class="cat">Taste &amp; Master</span><time>10:30 – 11:00</time><div class="who"><img src="assets/sp/giuliano.jpg" alt="" width="56" height="56"><div><b>피터 줄리아노</b><small>Senior Advisor, SCA</small></div></div><p class="topic">우리는 왜 커피를 마시는가? 커피에 매료된 500년의 역사</p><em class="live"></em></li><li class="talk" data-d="11.12" data-s="11:00" data-e="11:30" style="--c:#F08A4B"><span class="cat">Routine &amp; Ritual</span><time>11:00 – 11:30</time><div class="who"><img src="assets/sp/cho.jpg" alt="" width="56" height="56"><div><b>조희경</b><small>CEO, Hwayo</small></div></div><p class="topic">한 잔의 시간 — 매일의 한 잔은 어떻게 의식이 되고, 다음 세대로 이어지는가</p><em class="live"></em></li><li class="brk" data-d="11.12" data-s="11:30" data-e="13:00"><time>11:30 – 13:00</time><b>점심</b><em class="live"></em></li><li class="talk" data-d="11.12" data-s="13:00" data-e="13:30" style="--c:#2A9FD6"><span class="cat">Space &amp; Experience</span><time>13:00 – 13:30</time><div class="who"><img src="assets/sp/yang.jpg" alt="" width="56" height="56"><div><b>양태오</b><small>Creative Director, Teo Yang Studio</small></div></div><p class="topic">전통과 지역성의 재발견: 커피와 차를 매개로 한 공간 경험의 제안</p><em class="live"></em></li><li class="talk" data-d="11.12" data-s="13:30" data-e="14:00" style="--c:#2A9FD6"><span class="cat">Space &amp; Experience</span><time>13:30 – 14:00</time><div class="who"><img src="assets/sp/kim-kyurim.jpg" alt="" width="56" height="56"><div><b>김규림</b><small>Brand Director, newmix</small></div></div><p class="topic">K-믹스커피, 한국의 인상이 되다</p><em class="live"></em></li><li class="brk pair" data-d="11.12" data-s="14:00" data-e="14:30"><time>14:00 – 14:30</time><b>Pairing Table &amp; Coffee Break</b><p>페어링 테이블은 더 스테이지 중간에 진행되는 맛과 교류가 어우러진 특별한 시간입니다. 한 잔의 커피와 한 입의 디저트가 만들어내는 여유 속에서, 새로운 영감과 네트워킹의 기회를 만나실 수 있습니다.</p><small>컨퍼런스룸 401호 로비</small><em class="live"></em></li><li class="talk" data-d="11.12" data-s="14:30" data-e="15:00" style="--c:#6F6FB0"><span class="cat">Connection &amp; Networking</span><time>14:30 – 15:00</time><div class="who"><img src="assets/sp/an.jpg" alt="" width="56" height="56"><div><b>안치훈</b><small>CEO, unspecialty</small></div></div><p class="topic">유튜브에서 시작된 커피 플랫폼 이야기</p><em class="live"></em></li><li class="brk" data-d="11.12" data-s="15:00" data-e="15:40"><time>15:00 – 15:40</time><b>패널 토크</b><em class="live"></em></li><li class="brk" data-d="11.12" data-s="15:40" data-e="16:30"><time>15:40 – 16:30</time><b>연사 감사패 수여 및 카페쇼 엑셀런스 어워드</b><em class="live"></em></li><li class="brk galar" data-d="11.12" data-s="17:00" data-e="18:30"><time>17:00 – 18:30</time><a href="#gala"><b>Asia-Pacific&#x27;s 100 Best Coffee Shops GALA</b> →</a><em class="live"></em></li></ol></section>
+<section id="origin" class="sec"><header class="sh"><img class="sh-ic" src="assets/tiles/origin-ic.jpg" alt="" width="52" height="52"><div><h2>Origin Discovery</h2><p class="when">11월 11일(수) ~ 12일(목)</p><span class="chip">3F · 컨퍼런스룸 300호</span></div></header><div class="dcols"><div class="dcol"><h4>11.11 <small>수</small></h4><ol class="simple"><li data-d="11.11" data-s="10:30" data-e="12:30"><time>10:30 – 12:30</time><b>Coffee Board of India</b><em class="live"></em></li><li data-d="11.11" data-s="13:30" data-e="15:30"><time>13:30 – 15:30</time><b>Finca El Injerto</b><em class="live"></em></li><li data-d="11.11" data-s="16:00" data-e="18:00"><time>16:00 – 18:00</time><b>Guatemalan Coffees</b><em class="live"></em></li></ol></div><div class="dcol"><h4>11.12 <small>목</small></h4><ol class="simple"><li data-d="11.12" data-s="10:30" data-e="12:30"><time>10:30 – 12:30</time><b>IWCA</b><em class="live"></em></li><li data-d="11.12" data-s="13:30" data-e="15:30"><time>13:30 – 15:30</time><b>Café de Honduras</b><em class="live"></em></li><li data-d="11.12" data-s="16:00" data-e="18:00"><time>16:00 – 18:00</time><b>Coffee Board of India</b><em class="live"></em></li></ol></div></div></section>
+<section id="sessions" class="sec"><header class="sh"><img class="sh-ic" src="assets/tiles/sessions-ic.jpg" alt="" width="52" height="52"><div><h2>The Sessions</h2><p class="when">11월 11일(수) ~ 14일(토)</p><span class="chip">3F · 컨퍼런스룸 301호</span></div></header><h4 class="dh">11.11 <small>수</small></h4><ol class="cards"><li class="card" data-d="11.11" data-s="13:00" data-e="15:00"><time>13:00 – 15:00</time><p class="topic">커피의 가공과정 중 발효의 변조</p><div class="who sm"><span class="ph"><img src="assets/sp/song.jpg" alt="" width="48" height="48"></span><div><b>송호석 부장</b><small>콤파스 커피</small></div></div><em class="live"></em></li><li class="card" data-d="11.11" data-s="15:30" data-e="17:30"><time>15:30 – 17:30</time><p class="topic">추출변수로 만드는 실전 브루잉의 기준</p><div class="who sm"><span class="ph"><img src="assets/sp/cha.jpg" alt="" width="48" height="48"></span><div><b>차미경 대표</b><small>커넥스 브루잉 스팟</small></div></div><em class="live"></em></li></ol><h4 class="dh">11.12 <small>목</small></h4><ol class="cards"><li class="card" data-d="11.12" data-s="10:30" data-e="12:30"><time>10:30 – 12:30</time><p class="topic">맛있는 커피를 만드는 공학적 로스팅 접근법</p><div class="who sm"><span class="ph"><img src="assets/sp/lee-junseon.jpg" alt="" width="48" height="48"></span><div><b>이준선 대표</b><small>파브스 커피</small></div></div><em class="live"></em></li><li class="card" data-d="11.12" data-s="13:00" data-e="15:00"><time>13:00 – 15:00</time><p class="topic">도덕과 규범은 왜 굳이 그렇게 하는가</p><div class="who sm"><span class="ph two"><img src="assets/sp/lee-kyubum.jpg" alt="" width="48" height="48"><img src="assets/sp/hong-sunin.jpg" alt="" width="48" height="48"></span><div><b>이규범 로스터, 홍순인 바리스타</b><small>도덕과 규범</small></div></div><em class="live"></em></li><li class="card" data-d="11.12" data-s="15:30" data-e="17:30"><time>15:30 – 17:30</time><p class="topic">어떤 원두든, 매력적인 에스프레소로</p><div class="who sm"><span class="ph"><img src="assets/sp/kwon.jpg" alt="" width="48" height="48"></span><div><b>권혁수 팀장</b><small>토성마을</small></div></div><em class="live"></em></li></ol><h4 class="dh">11.13 <small>금</small></h4><ol class="cards"><li class="card" data-d="11.13" data-s="10:00" data-e="11:00"><time>10:00 – 11:00</time><p class="topic">커피의 개인화 시대, 그 뒤에 숨은 기술</p><div class="who sm"><span class="ph"><img src="assets/sp/bechor.jpg" alt="" width="48" height="48"></span><div><b>길라드 베코르 대표</b><small>Coffi</small></div></div><em class="live"></em></li><li class="card" data-d="11.13" data-s="11:30" data-e="12:30"><time>11:30 – 12:30</time><p class="topic">좋은 커피는 우연히 탄생하지 않는다: 커피를 완성하는 데이터의 힘</p><div class="who sm"><span class="ph"><img src="assets/sp/apostolopoulos.jpg" alt="" width="48" height="48"></span><div><b>바실리스 아포스톨로풀로스 대표</b><small>bibe Coffee</small></div></div><em class="live"></em></li><li class="card" data-d="11.13" data-s="13:00" data-e="15:00"><time>13:00 – 15:00</time><p class="topic">커피 바 동선 설계</p><div class="who sm"><span class="ph"><img src="assets/sp/kim-uiseong.jpg" alt="" width="48" height="48"></span><div><b>김의성 컨설팅 팀장</b><small>빈브라더스</small></div></div><em class="live"></em></li><li class="card" data-d="11.13" data-s="15:30" data-e="17:30"><time>15:30 – 17:30</time><p class="topic">미리보는 2027 커피 트렌드</p><div class="who sm"><span class="ph"><img src="assets/sp/hong-jungee.jpg" alt="" width="48" height="48"></span><div><b>홍준기 부장</b><small>월간커피</small></div></div><em class="live"></em></li></ol><h4 class="dh">11.14 <small>토</small></h4><ol class="cards"><li class="card" data-d="11.14" data-s="10:30" data-e="12:30"><time>10:30 – 12:30</time><p class="topic">변화하는 시대, 바리스타의 새로운 역할</p><div class="who sm"><span class="ph"><img src="assets/sp/lim.jpg" alt="" width="48" height="48"></span><div><b>임정환 공동대표</b><small>에어리커피</small></div></div><em class="live"></em></li><li class="card" data-d="11.14" data-s="13:00" data-e="15:00"><time>13:00 – 15:00</time><p class="topic">시간을 사는 법</p><div class="who sm"><span class="ph"><img src="assets/sp/hong-chanho.jpg" alt="" width="48" height="48"></span><div><b>홍찬호 PM</b><small>RoasteryFlow</small></div></div><em class="live"></em></li></ol></section>
+<section id="sca" class="sec"><header class="sh"><img class="sh-ic" src="assets/tiles/sca-ic.jpg" alt="" width="52" height="52"><div><h2>SCA Education</h2><p class="when">11월 12일(목) ~ 14일(토)</p><span class="chip">3F · 컨퍼런스룸 317호</span></div></header><h4 class="dh">11.12 <small>목</small> <span class="course">One Day Coffee Explorer</span></h4><ol class="cards"><li class="card" data-d="11.12" data-s="10:00" data-e="12:00"><time>10:00 – 12:00</time><p class="topic">Mission 1. 맛의 탐색 | Discover the Flavor</p><p class="by">박수인, 오동준</p><em class="live"></em></li><li class="card" data-d="11.12" data-s="13:00" data-e="15:00"><time>13:00 – 15:00</time><p class="topic">Mission 2. 취향의 발견 | Define your Taste</p><p class="by">김나연, 이재원</p><em class="live"></em></li><li class="card" data-d="11.12" data-s="16:00" data-e="18:00"><time>16:00 – 18:00</time><p class="topic">Mission 3. 내 컵의 완성 | Craft your Cup</p><p class="by">김경태, 허정민</p><em class="live"></em></li></ol><h4 class="dh">11.13 <small>금</small> <span class="course">All about Q</span></h4><ol class="cards"><li class="card" data-d="11.13" data-s="09:30" data-e="18:00"><time>09:30 – 18:00</time><p class="topic">All about Q : 이해를 넘어 적용까지 | From Understanding To Application</p><p class="by">Peter Giuliano, Lulu Wei</p><em class="live"></em></li></ol><h4 class="dh">11.14 <small>토</small> <span class="course">Intro to Cupping</span></h4><ol class="cards"><li class="card" data-d="11.14" data-s="10:00" data-e="13:30"><time>10:00 – 13:30</time><p class="topic">Intro to Cupping</p><p class="by">Lulu Wei, 이경윤</p><em class="live"></em></li></ol></section>
+<section id="futures" class="sec"><header class="sh"><img class="sh-ic" src="assets/tiles/futures-ic.jpg" alt="" width="52" height="52"><div><h2>Coffee Futures Challenge</h2><p class="when">11월 13일(금) 13:00–17:00</p><span class="chip">3F · 컨퍼런스룸 300호</span></div></header><div class="desc" data-d="11.13" data-s="13:00" data-e="17:00"><p>커피 퓨처스 챌린지는 커피 산업의 미래와 새로운 가능성을 탐색하는 프로그램입니다. 비즈니스, 서비스, 문화, 기술 등 다양한 분야에서 미래 세대가 제안하는 창의적인 아이디어를 통해 변화하는 커피 산업의 흐름을 살펴보고, 지속 가능한 성장과 혁신의 가능성을 모색합니다.</p><em class="live"></em></div></section>
+<section id="champion" class="sec"><header class="sh"><img class="sh-ic" src="assets/tiles/champion-ic.jpg" alt="" width="52" height="52"><div><h2>Champion Live</h2><p class="when">11월 14일(토)</p><span class="chip">3F · 컨퍼런스룸 318호</span></div></header>
+  <div class="champs">
+  <div class="champ" data-d="11.14" data-s="10:30" data-e="12:30"><img src="assets/sp/jaafar.jpg" alt="Nas Jaafar" width="120" height="120">
+  <div><time>10:30 – 12:30</time><b>Nas Jaafar</b><small>2026 WBrC Champion</small></div><em class="live"></em></div>
+  <div class="champ" data-d="11.14" data-s="13:30" data-e="15:30"><img src="assets/sp/panwei.jpg" alt="Pan Wei" width="120" height="120">
+  <div><time>13:30 – 15:30</time><b>Pan Wei</b><small>판웨이 · 2026 World Barista Champion</small></div><em class="live"></em></div>
+  </div>
+</section>
+<section id="gala" class="sec dark"><header class="sh"><img class="sh-ic" src="assets/tiles/gala-ic.jpg" alt="" width="52" height="52"><div><h2>Asia-Pacific&#x27;s 100 Best Coffee Shops GALA</h2><p class="when">11월 12일(목) 17:00–18:30</p><span class="chip">4F · 컨퍼런스룸 401호</span></div></header>
+  <img class="badge" src="assets/ap100-badge.png" alt="Asia-Pacific's 100 Best Coffee Shops with DaVinci Gourmet" width="600" height="600">
+  <div class="desc" data-d="11.12" data-s="17:00" data-e="18:30"><p>아시아·태평양에서 가장 특별한 커피숍 100곳은 어디일까? 그 답이 2026 서울카페쇼에서 세계 최초로 공개됩니다.</p><em class="live"></em></div>
+</section>
 <section id="venue" class="sec">
-  <header class="sh"><img class="sh-ic" src="assets/tiles/venue-ic.jpg" alt="" width="52" height="52"><div><h2>안내</h2><p class="when">베뉴 가이드 · 등록대 · 문의</p></div></header>
-  <h3 class="sub-h">베뉴 가이드</h3><p class="sub-d">서울특별시 강남구 영동대로 513 코엑스 컨퍼런스룸 3·4층</p><ul class="rooms"><li><span class="fl">4F</span><span class="rm" style="--c:#96C263">401호 The Stage · GALA</span></li><li><span class="fl">3F</span><span class="rm" style="--c:#F0864C">301호 The Sessions</span></li><li><span class="fl"></span><span class="rm" style="--c:#6E6FB2">300호 Origin Discovery</span></li><li><span class="fl"></span><span class="rm" style="--c:#25A3D5">317호 SCA Education</span></li><li><span class="fl"></span><span class="rm" style="--c:#FFE373">318호 Champion Live</span></li></ul>
-  
-  <figure class="map-f"><svg class="map iso" viewBox="0 0 600 990" role="img" aria-label="코엑스 컨퍼런스룸 약도: 1층 동문 또는 남2문으로 들어와 두 통로가 만나는 지점의 에스컬레이터로 3층·4층 이동. 3층 300·301·317·318호와 C홀 앞 등록대, 4층 401호와 앞 로비의 등록대">
-<image href="assets/map/floor-1f.png" x="0" y="580" width="640" height="407"/>
-<line x1="342.5" y1="731.8" x2="502.5" y2="783.8" class="hdv"/>
-<line x1="409.0" y1="700.5" x2="569.0" y2="752.5" class="hdv"/>
-<line x1="475.5" y1="669.2" x2="635.5" y2="721.2" class="hdv"/>
-<text x="357.2" y="767.0" class="hl a1" text-anchor="middle">A1</text>
-<text x="423.8" y="735.7" class="hl" text-anchor="middle">A2</text>
-<text x="490.2" y="704.5" class="hl" text-anchor="middle">A3</text>
-<text x="556.8" y="673.2" class="hl" text-anchor="middle">A4</text>
-<path d="M90 827 L249.8 752.2 M118 710 L249.8 752.2" class="rt"/>
-<circle cx="90" cy="827" r="6" class="dr"/><text x="40" y="872" class="lb">동문</text>
-<circle cx="118" cy="710" r="6" class="dr"/><text x="40" y="692" class="lb">남2문</text>
-<image href="assets/map/floor-3f.png" x="0" y="290" width="640" height="401"/>
-<line x1="339.8" y1="437.8" x2="496.8" y2="488.1" class="hdv"/>
-<line x1="405.5" y1="407.2" x2="562.5" y2="457.6" class="hdv"/>
-<line x1="471.2" y1="376.7" x2="628.2" y2="427.0" class="hdv"/>
-<text x="354.0" y="472.1" class="hl" text-anchor="middle">C1</text>
-<text x="419.7" y="441.6" class="hl" text-anchor="middle">C2</text>
-<text x="485.5" y="411.1" class="hl" text-anchor="middle">C3</text>
-<text x="551.2" y="380.6" class="hl" text-anchor="middle">C4</text>
-<polygon points="0.0,471.0 42.6,451.1 148.6,485.0 106.0,505.0" fill="#F0864C"/>
-<text x="66.3" y="475.0" class="rm" text-anchor="middle" transform="rotate(-25.1 66.3 470.0)">301</text>
-<line x1="42.6" y1="451.1" x2="148.6" y2="485.0" class="dv"/>
-<line x1="85.1" y1="431.2" x2="191.1" y2="465.0" class="dv"/>
-<line x1="120.0" y1="414.9" x2="226.0" y2="448.6" class="dv"/>
-<line x1="150.9" y1="400.4" x2="256.9" y2="434.0" class="dv"/>
-<line x1="185.8" y1="384.1" x2="291.8" y2="417.6" class="dv"/>
-<line x1="220.6" y1="367.8" x2="326.6" y2="401.3" class="dv"/>
-<polygon points="220.6,367.8 251.6,353.4 357.6,386.7 326.6,401.3" fill="#25A3D5"/>
-<text x="289.1" y="382.3" class="rm" text-anchor="middle" transform="rotate(-25.1 289.1 377.3)">317</text>
-<line x1="251.6" y1="353.4" x2="357.6" y2="386.7" class="dv"/>
-<polygon points="251.6,353.4 286.4,337.1 392.4,370.3 357.6,386.7" fill="#FFE373"/>
-<text x="322.0" y="366.9" class="rm" text-anchor="middle" transform="rotate(-25.1 322.0 361.9)">318</text>
-<line x1="286.4" y1="337.1" x2="392.4" y2="370.3" class="dv"/>
-<line x1="321.2" y1="320.8" x2="427.2" y2="353.9" class="dv"/>
-<line x1="356.0" y1="304.5" x2="462.0" y2="337.6" class="dv"/>
-<polygon points="179.0,501.0 151.0,492.0 116.0,509.0 144.0,517.0" fill="#6E6FB2"/><text x="147.5" y="509.5" class="rm" text-anchor="middle" fill="#fff" style="fill:#fff" transform="rotate(-25.1 147.5 504.7)">300</text>
-<g class="pl"><rect x="308" y="430.0" width="60" height="24" rx="12"/><text x="338.0" y="447.0" text-anchor="middle">등록대</text></g>
-<image href="assets/map/floor-4f.png" x="0" y="0" width="640" height="402"/>
-<polygon points="182.2,165.6 337.1,93.1 362.8,101.3 207.9,173.8" fill="#D7E8C4"/>
-<polygon points="93.6,137.0 159.5,106.2 248.6,134.7 182.7,165.6" fill="#96C263"/>
-<text x="171.1" y="142.9" class="rm" text-anchor="middle" transform="rotate(-25.1 171.1 135.9)">401호</text>
-<g class="pl"><rect x="214.9" y="131.3" width="60" height="24" rx="12"/><text x="244.9" y="148.3" text-anchor="middle">등록대</text></g>
-<line x1="249.8" y1="752.2" x2="249.8" y2="172.2" class="lift"/>
-<g class="es"><circle cx="249.8" cy="752.2" r="10"/><path d="M244.8 756.2 H247.8 L251.8 748.2 H254.8"/></g>
-<g class="es"><circle cx="249.8" cy="462.2" r="10"/><path d="M244.8 466.2 H247.8 L251.8 458.2 H254.8"/></g>
-<g class="es"><circle cx="249.8" cy="172.2" r="10"/><path d="M244.8 176.2 H247.8 L251.8 168.2 H254.8"/></g>
-<text x="261" y="738" class="sm">에스컬레이터</text>
-<text x="8" y="60" class="fl">4F</text>
-<text x="8" y="350" class="fl">3F</text>
-<text x="8" y="640" class="fl">1F</text>
-</svg><figcaption>코엑스 공식 층별 안내도와 4층 상세 도면을 바탕으로 표시했습니다.</figcaption></figure>
-  <ol class="how"><li>코엑스 <b>동문</b> 또는 <b>남2문</b>(1층)으로 입장합니다.</li><li><b>1층 A1홀 앞 에스컬레이터</b>를 타고 <b>3층</b>(300·301·317·318호) 또는 <b>4층</b>(401호)으로 올라오시면 행사장을 쉽게 찾으실 수 있습니다.</li></ol>
-  <p class="park">행사 기간에는 코엑스 주차장이 매우 혼잡합니다. 가급적 대중교통을 이용해 주시기 바랍니다.</p>
-  
+  <header class="sh"><img class="sh-ic" src="assets/tiles/venue-ic.jpg" alt="" width="52" height="52"><div><h2>장소 · 문의</h2></div></header>
+  <h4 class="dh">장소</h4><p class="addr">서울 코엑스 컨퍼런스룸 3, 4층</p><ul class="rooms"><li><span class="fl">3F</span>300호 · 301호 · 317호 · 318호</li><li><span class="fl">4F</span>401호 · 401호 로비</li></ul>
   <a class="btn" href="https://map.naver.com/p/search/%EC%BD%94%EC%97%91%EC%8A%A4" target="_blank" rel="noopener">지도에서 보기 ↗</a>
-  <h3 class="sub-h" id="registration">등록대</h3><p class="sub-d">등록대에서 출입증을 발급받은 뒤 입장해 주시기 바랍니다.</p>
-  <ul class="rooms reg"><li><span class="fl">3F</span><span class="rm"><b>C1·C2홀 앞 등록대</b><small>11.11(수) – 14(토) 오전 9시부터 운영</small></span></li><li><span class="fl">4F</span><span class="rm"><b>401호 앞 로비 등록대</b><small>11.12(목) 오전 9시부터 운영</small></span></li></ul>
-  <div class="park nb"><b>🪪 출입증 배지</b>등록대에서 출입증 배지를 수령한 뒤, 각 세션 장소 출입구에서 QR코드를 태그하고 입장할 수 있습니다.</div>
-  <div class="park nb"><b>🎁 The Stage 서프라이즈 키트</b>4층 401호 앞 등록대에서 11.12(목) 오전 9시부터 선착순 증정합니다. 더 스테이지·마스터블렌드 패스 소지자 중 현장 등록을 마친 분께 드리며, 준비된 수량이 소진되면 조기 마감될 수 있습니다.</div>
-  <h3 class="sub-h" id="contact">문의</h3><p class="sub-d">행사 기간에는 3층 303호 현장 사무국에서 안내해 드립니다.</p>
+  <h4 class="dh">문의</h4>
   <ul class="contact">
-    <li><span>현장</span><b class="ofc">사무국 · 3층 303호</b></li>
     <li><span>E</span><a href="mailto:info@wclforum.org">info@wclforum.org</a></li>
     <li><span>H</span><a href="https://www.wclforum.org" target="_blank" rel="noopener">www.wclforum.org</a></li>
-    <li><span>@</span><a href="https://www.instagram.com/wcf_coffeeforum/" target="_blank" rel="noopener">wcf_coffeeforum</a></li>
+    <li><span>@</span><a href="https://www.instagram.com/wclf_coffeeforum/" target="_blank" rel="noopener">wclf_coffeeforum</a></li>
   </ul>
-  <p class="park">행사 기간에는 메일 답변이 늦어질 수 있습니다. 급한 문의는 3층 303호 현장 사무국을 방문해 주시기 바랍니다.</p>
   <div class="logos"><h5>공식후원</h5><img src="assets/supporters.png" alt="International Coffee Organization, Korea Tourism Organization, Seoul Metropolitan Government, K-Convention">
   <h5>협찬사</h5><img src="assets/sponsors.png" alt="Sponsors"></div>
   <p class="note">* 주최측 상황에 따라 프로그램 별 세부 내용은 변경될 수 있습니다.</p>
 </section>
 <footer><span>주최 월드커피포럼 조직위원회</span><a href="#top">맨 위로 ↑</a></footer>
 </div>
+<a class="fab" id="fab" href="#home" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></a>
 <script>
 (function(){
   // 새로 열거나 새로고침하면 항상 표지(맨 위)부터 보이게
@@ -162,34 +286,19 @@
   tabs.forEach(function(b){b.addEventListener('click',function(){sel(b.dataset.day)})});
   var k=kst(),today=(k.getMonth()+1)+'.'+k.getDate();
   sel(k.getFullYear()===2026&&['11.11','11.12','11.13','11.14'].indexOf(today)>-1?today:'11.11');
-  // 프로그램 보기 / 타임테이블 보기 토글
-  var vb=document.querySelectorAll('.vt button'),vp=document.querySelectorAll('.vp'),vt=document.querySelector('.vt');
-  function view(v,scroll){vb.forEach(function(b){b.setAttribute('aria-selected',b.dataset.v===v)});vp.forEach(function(p){p.hidden=p.dataset.v!==v});
-    if(scroll&&vt){var y=vt.getBoundingClientRect().top+scrollY-58;scrollTo({top:y,behavior:'smooth'});}}
-  vb.forEach(function(b){b.addEventListener('click',function(){view(b.dataset.v,true)})});
-  function fromHash(){if(location.hash==='#timetable')view('tt',true);else if(location.hash==='#programs'||location.hash==='#glance')view('prog',location.hash==='#programs');}
-  addEventListener('hashchange',fromHash);fromHash();
-  // 스크롤을 시작하면 바로 상단 바 표시
-  var cover=document.getElementById('top');
-  var cue=document.querySelector('.cue');
-  function onCover(){document.body.classList.toggle('bar-on',scrollY>8);
-    if(!cue)return;var y=scrollY;
-    // 스크롤을 시작하면 버튼이 끌려 올라오듯 다 보였다가, 조금 더 내리면 사라진다
-    if(y<=2){cue.classList.remove('pulling','gone');cue.style.removeProperty('--pull');cue.style.removeProperty('--fade');return;}
-    cue.classList.add('pulling');
-    var p=Math.min(y/90,1),f=y<120?1:Math.max(0,1-(y-120)/80);
-    cue.style.setProperty('--pull',p.toFixed(3));cue.style.setProperty('--fade',f.toFixed(3));
-    cue.classList.toggle('gone',f<=0);}
-  addEventListener('scroll',onCover,{passive:true});onCover();
-  // 카드 → 세션 상세
-  document.querySelectorAll('[data-id]').forEach(function(el){
-    el.classList.add('is-link');el.setAttribute('role','link');el.tabIndex=0;
-    function go(){location.href='session.html?id='+el.dataset.id;}
-    el.addEventListener('click',go);el.addEventListener('keydown',function(e){if(e.key==='Enter')go();});
-  });
+  // 상단 바·현재 섹션 표시
+  var bar=document.getElementById('bar'),fab=document.getElementById('fab'),home=document.getElementById('home');
+  var links=[].slice.call(document.querySelectorAll('#dock a')),secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  var cur=null;
+  function onScroll(){
+    var y=home.getBoundingClientRect().top;
+    bar.classList.toggle('on',y<=60);fab.classList.toggle('on',y<-400);
+    var idx=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<130)idx=i;});
+    if(idx!==cur){cur=idx;links.forEach(function(a,i){a.classList.toggle('cur',i===idx)});
+      if(idx>-1){var a=links[idx],d=a.parentNode;d.scrollTo({left:a.offsetLeft-d.clientWidth/2+a.clientWidth/2,behavior:'smooth'});}}
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
 })();
 </script>
-<script src="js/nav.js?v=11071630"></script>
-<script src="js/fx.js?v=11071630"></script>
 </body>
 </html>
