@@ -59,7 +59,7 @@
       sp: [['Gilad Bechor', 'CEO, Coffi', 'Co-founder and CEO of Coffi, a specialty coffee app that helps coffee lovers discover, log and enjoy coffee to their taste and connects them with independent roasters. Raised in California, he has built user-centered products in product and design.']],
       ov: ['Coffee has moved from commodity to standardized specialty to home brewing, and now to personal identity. He shares how Coffi was built around one person’s relationship with coffee — taste-based recommendations, bean inventory and the Coffi Passport — and how personalization can strengthen coffee’s social connections. Includes a live app demo and Q&A.'] },
     'session-7': { cat: 'Session 7', title: 'Great Coffee Is No Accident: Why Data Is the Missing Ingredient',
-      sp: [['Vasilis Apostolopoulos', 'CEO, bibe coffee', 'Co-founder and CEO of bibe coffee, which manages coffee quality and operations with data.']],
+      sp: [['Vasilis Apostolopoulos', 'CEO, BibeCoffee', 'Co-founder and CEO of BibeCoffee, which manages coffee quality and operations with data.']],
       ov: ['How data is changing coffee, from understanding extraction to keeping quality consistent and running thousands of machines across many stores. Why good beans, equipment and barista skill alone cannot guarantee consistency, and how connected equipment and real-time analytics help.'] },
     'session-8': { cat: 'Session 8', title: 'Designing Coffee Bar Layout and Workflow',
       sp: [['Uiseong Kim', 'Head of B2B Consulting, Bean Brothers', 'Joined Bean Brothers in 2014 to manage equipment for its stores and now leads coffee bar design consulting on the B2B team. He has taught a “bar design without failure” class at unspecialty edu.']],

@@ -480,9 +480,9 @@ window.WCF_SESSIONS = [
   "speakers": [
    {
     "name": "바실리스 아포스톨로풀로스 Vasilis Apostolopoulos",
-    "role": "bibe Coffee 대표",
+    "role": "BibeCoffee 대표",
     "photo": "assets/sp/apostolopoulos.jpg",
-    "bio": "데이터로 커피의 품질과 운영을 관리하는 bibe coffee의 공동 창업자이자 CEO."
+    "bio": "데이터로 커피의 품질과 운영을 관리하는 BibeCoffee의 공동 창업자이자 CEO."
    }
   ],
   "overview": [
