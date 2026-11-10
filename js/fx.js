@@ -5,7 +5,7 @@
   var cst;
   function cur(emo) {
     var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text x="1" y="26" font-size="26">' + emo + '</text></svg>';
-    var u = 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '") 6 4';
+    var u = 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '") 14 14';
     if (!cst) { cst = document.createElement('style'); document.head.appendChild(cst); }
     cst.textContent = 'html,html *{cursor:' + u + ',auto!important}' +
       'html input:not([type=button]):not([type=submit]):not([type=checkbox]):not([type=radio]),html textarea{cursor:text!important}';

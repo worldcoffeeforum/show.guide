@@ -525,7 +525,7 @@ body.dr-open .dr-panel{transform:none}
 @media (prefers-reduced-motion:reduce){.cue i{animation:none}}
 .tb-lang{display:inline-flex;gap:6px;font-size:12px;font-weight:500;color:var(--mut)}
 .tb-lang b{color:var(--k);font-weight:600}
-.tb-lang a{text-decoration:none;color:var(--mut)}
+.tb-lang a{text-decoration:none;color:var(--mut);padding:10px 8px;margin:-10px -8px;position:relative;z-index:1}
 .topbar{grid-template-columns:44px 1fr 64px}
 .home-lang{display:none}
 .dt-img{display:block;width:min(200px,60%);margin:22px auto 4px}
