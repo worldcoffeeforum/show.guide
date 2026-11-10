@@ -117,9 +117,14 @@
     if (!item) return notFound();
     document.title = item.name + ' · ' + host.title;
     var html = '<a class="back" href="session.html?id=' + esc(host.id) + '">‹ ' + esc(host.title) + '</a>' +
-      '<p class="dt-c">' + esc(grp.group) + '</p><div class="pt-hd">' + logo(item) + '<div><h1 class="dt-t">' + esc(item.name) + '</h1>' + (item.sub ? '<p class="pg-m">' + esc(item.sub) + '</p>' : '') + '</div></div>' +
-      '<h2 class="dt-h">' + T('브랜드 소개', 'About the Brand') + '</h2>' +
+      '<p class="dt-c">' + esc(grp.group) + '</p><div class="pt-hd">' + logo(item) + '<div><h1 class="dt-t">' + esc(item.name) + '</h1>' + (item.sub ? '<p class="pg-m">' + esc(item.sub) + '</p>' : '') + '</div></div>';
+    // 페어링 테이블 시음 라인업: tasting = {note, list:[[이름, 설명(선택)]]}
+    if (item.tasting && item.tasting.list && item.tasting.list.length) html += '<h2 class="dt-h">' + T('페어링 테이블 시음 라인업', 'Tasting at the Pairing Table') + '</h2>' +
+      (item.tasting.note ? '<p class="ts-n">' + esc(item.tasting.note) + '</p>' : '') +
+      '<ul class="ts">' + item.tasting.list.map(function (r) { return '<li><b>' + esc(r[0]) + '</b>' + (r[1] ? '<span>' + esc(r[1]) + '</span>' : '') + '</li>'; }).join('') + '</ul>';
+    html += '<h2 class="dt-h">' + T('브랜드 소개', 'About the Brand') + '</h2>' +
       '<div class="dt-body">' + String(item.desc || T('더 스테이지 페어링 테이블의 ' + grp.group + '입니다.', grp.group.replace(/s$/, '') + ' of the Pairing Table at The Stage.')).split('\n').map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>';
+    if (item.featured) html += '<h2 class="dt-h">' + T('제품 소개', 'Products') + '</h2>';
     if (item.featured) html += '<div class="pt-ft"><h4>' + esc(item.featured.title) + '</h4>' + (item.featured.note ? '<p>' + esc(item.featured.note) + '</p>' : '') +
       '<ol>' + (item.featured.list || []).map(function (r) {
         // r = [이름, 한 줄 소개, 설명(선택), 티 노트(선택), 수상(선택)]
