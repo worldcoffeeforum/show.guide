@@ -639,6 +639,135 @@ window.WCF_SESSIONS = [
   "overview": [
    "그늘 아래 자란 커피, 인도의 자연과 풍미를 만나보세요."
   ],
+  "cupping": {
+   "note": "커핑은 아래 순서대로 진행됩니다.",
+   "tables": [
+    {
+     "t": "Table 1 · 인도 커피위원회의 GI(지리적 표시) 등록 커피",
+     "items": [
+      [
+       "Coorg",
+       ""
+      ],
+      [
+       "Chikmagalur",
+       ""
+      ],
+      [
+       "Bababudangiris",
+       ""
+      ],
+      [
+       "Araku Valley",
+       ""
+      ],
+      [
+       "Wayanaad (Robusta)",
+       ""
+      ]
+     ]
+    },
+    {
+     "t": "Table 2 · 인도 커피 수출사 선정 스페셜티 아라비카",
+     "items": [
+      [
+       "Sangameshwar Coffee Estates (SCE)",
+       "Dual Fermented Washed (Attikan)"
+      ],
+      [
+       "Badra Coffee",
+       "Sample 371"
+      ],
+      [
+       "The Coorg Coffee Club",
+       "Alathmad Estate (Arabica Selection 795)"
+      ],
+      [
+       "Brewed Awakening",
+       "NAGA 82"
+      ],
+      [
+       "Sangameshwar Coffee Estates (SCE)",
+       "Enzymatic Bloom (Gungegiri Estate)"
+      ],
+      [
+       "South India Coffee Company (SICC)",
+       "Carbonic Macerated (Mooleh Manay/Mooleymane)"
+      ]
+     ]
+    },
+    {
+     "t": "Table 3 · 스페셜티 커피 (로부스타·엑셀사·몬순드 말라바 아라비카) — 인도 커피위원회 및 선정 수출사",
+     "items": [
+      [
+       "Monsooned Malabar (GI & Specialty)",
+       "Arabica"
+      ],
+      [
+       "Mysore Nuggets Extra Bold (MNEB)",
+       "Arabica"
+      ],
+      [
+       "Robusta Kaapi Royale (RKR)",
+       "Robusta"
+      ],
+      [
+       "Badra Coffee",
+       "Sample 372 · Robusta"
+      ],
+      [
+       "The Coorg Coffee Club",
+       "Surya Kiran Estate (Canephora C x R) · Robusta"
+      ],
+      [
+       "South India Coffee Company (SICC)",
+       "35 Natural Sequential Fermented · Excelsa"
+      ]
+     ]
+    },
+    {
+     "t": "Table 4 · 생두 샘플",
+     "items": [
+      [
+       "Sangameshwar Coffee Estates (SCE)",
+       "Dual Fermented Washed (Attikan)"
+      ],
+      [
+       "Badra Coffee",
+       "Sample 371"
+      ],
+      [
+       "The Coorg Coffee Club",
+       "Alathmad Estate (Arabica Selection 795)"
+      ],
+      [
+       "Brewed Awakening",
+       "NAGA 82"
+      ],
+      [
+       "Sangameshwar Coffee Estates (SCE)",
+       "Enzymatic Bloom (Gungegiri Estate)"
+      ],
+      [
+       "South India Coffee Company (SICC)",
+       "Carbonic Macerated (Mooleh Manay/Mooleymane)"
+      ],
+      [
+       "Badra Coffee",
+       "Sample 372 · Robusta"
+      ],
+      [
+       "The Coorg Coffee Club",
+       "Surya Kiran Estate (Canephora C x R) · Robusta"
+      ],
+      [
+       "South India Coffee Company (SICC)",
+       "35 Natural Sequential Fermented · Excelsa"
+      ]
+     ]
+    }
+   ]
+  },
   "dow": "수"
  },
  {
@@ -730,6 +859,135 @@ window.WCF_SESSIONS = [
   "overview": [
    "그늘 아래 자란 커피, 인도의 자연과 풍미를 만나보세요."
   ],
+  "cupping": {
+   "note": "커핑은 아래 순서대로 진행됩니다.",
+   "tables": [
+    {
+     "t": "Table 1 · 인도 커피위원회의 GI(지리적 표시) 등록 커피",
+     "items": [
+      [
+       "Coorg",
+       ""
+      ],
+      [
+       "Chikmagalur",
+       ""
+      ],
+      [
+       "Bababudangiris",
+       ""
+      ],
+      [
+       "Araku Valley",
+       ""
+      ],
+      [
+       "Wayanaad (Robusta)",
+       ""
+      ]
+     ]
+    },
+    {
+     "t": "Table 2 · 인도 커피 수출사 선정 스페셜티 아라비카",
+     "items": [
+      [
+       "Sangameshwar Coffee Estates (SCE)",
+       "Dual Fermented Washed (Attikan)"
+      ],
+      [
+       "Badra Coffee",
+       "Sample 371"
+      ],
+      [
+       "The Coorg Coffee Club",
+       "Alathmad Estate (Arabica Selection 795)"
+      ],
+      [
+       "Brewed Awakening",
+       "NAGA 82"
+      ],
+      [
+       "Sangameshwar Coffee Estates (SCE)",
+       "Enzymatic Bloom (Gungegiri Estate)"
+      ],
+      [
+       "South India Coffee Company (SICC)",
+       "Carbonic Macerated (Mooleh Manay/Mooleymane)"
+      ]
+     ]
+    },
+    {
+     "t": "Table 3 · 스페셜티 커피 (로부스타·엑셀사·몬순드 말라바 아라비카) — 인도 커피위원회 및 선정 수출사",
+     "items": [
+      [
+       "Monsooned Malabar (GI & Specialty)",
+       "Arabica"
+      ],
+      [
+       "Mysore Nuggets Extra Bold (MNEB)",
+       "Arabica"
+      ],
+      [
+       "Robusta Kaapi Royale (RKR)",
+       "Robusta"
+      ],
+      [
+       "Badra Coffee",
+       "Sample 372 · Robusta"
+      ],
+      [
+       "The Coorg Coffee Club",
+       "Surya Kiran Estate (Canephora C x R) · Robusta"
+      ],
+      [
+       "South India Coffee Company (SICC)",
+       "35 Natural Sequential Fermented · Excelsa"
+      ]
+     ]
+    },
+    {
+     "t": "Table 4 · 생두 샘플",
+     "items": [
+      [
+       "Sangameshwar Coffee Estates (SCE)",
+       "Dual Fermented Washed (Attikan)"
+      ],
+      [
+       "Badra Coffee",
+       "Sample 371"
+      ],
+      [
+       "The Coorg Coffee Club",
+       "Alathmad Estate (Arabica Selection 795)"
+      ],
+      [
+       "Brewed Awakening",
+       "NAGA 82"
+      ],
+      [
+       "Sangameshwar Coffee Estates (SCE)",
+       "Enzymatic Bloom (Gungegiri Estate)"
+      ],
+      [
+       "South India Coffee Company (SICC)",
+       "Carbonic Macerated (Mooleh Manay/Mooleymane)"
+      ],
+      [
+       "Badra Coffee",
+       "Sample 372 · Robusta"
+      ],
+      [
+       "The Coorg Coffee Club",
+       "Surya Kiran Estate (Canephora C x R) · Robusta"
+      ],
+      [
+       "South India Coffee Company (SICC)",
+       "35 Natural Sequential Fermented · Excelsa"
+      ]
+     ]
+    }
+   ]
+  },
   "dow": "목"
  },
  {

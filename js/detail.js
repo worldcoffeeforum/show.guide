@@ -78,6 +78,15 @@
       '<div class="dt-body">' + x.overview.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + '</div>' +
       (x.links || []).map(function (l) { return '<a class="btn dt-link" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + ' ↗</a>'; }).join('');
 
+    // 커핑 라인업 (오리진 디스커버리 등): cupping = {note, tables:[{t, items:[[이름, 설명]]}]}
+    if (x.cupping && x.cupping.tables && x.cupping.tables.length) {
+      html += '<h2 class="dt-h">' + T('커핑 라인업', 'Cupping Lineup') + '</h2>' + (x.cupping.note ? '<p class="ts-n">' + esc(x.cupping.note) + '</p>' : '');
+      x.cupping.tables.forEach(function (g) {
+        html += '<h3 class="pt-g">' + esc(g.t) + '</h3><ol class="cp">' + g.items.map(function (r) {
+          return '<li><b>' + esc(r[0]) + '</b>' + (r[1] ? '<span>' + esc(r[1]) + '</span>' : '') + '</li>'; }).join('') + '</ol>';
+      });
+    }
+
     // 참가사 라인업 (페어링 테이블 등): partners = [{group, items:[{name, desc, logo}]}]
     if (x.partners && x.partners.length) {
       html += '<h2 class="dt-h">' + T('참가사 라인업', 'Partner Lineup') + '</h2>';
