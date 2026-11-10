@@ -11,6 +11,11 @@
 | `js/planner.js` | 조회 · 결과 · 수정 화면 |
 | `apps-script/Code.gs`, `appsscript.json` | 통합관리시트에 붙이는 Apps Script 웹앱 |
 
+## 세션 플래너 공개 스위치 (2026-11-10)
+- `js/nav.js` 맨 위 `PLANNER_OPEN` 값으로 켜고 끈다. `false`면 메뉴의 「세션 플래너 로그인」, 오른쪽 아래 바로가기 버튼이 사라지고 `planner.html`은 "준비 중" 안내만 보인다.
+- 비공개 상태에서도 주소 끝에 `?planner=test`를 붙여 한 번 열면 그 브라우저에서만 계속 보인다 (예: `https://worldcoffeeforum.github.io/show.guide/?planner=test`). `?planner=off`로 해제.
+- 공개할 때는 `PLANNER_OPEN = true`로 바꾸고, html의 `?v=` 값을 올려 캐시를 갱신한다.
+
 ## 세션 플래너
 - 로그인: 이름 + 휴대전화 (해외 번호는 이메일). 로그인 전에는 수요조사 관련 문구를 보여 주지 않는다.
 - 본인 확인 출처: `티켓 명단` 탭(유료 구매자, **권종** 포함, 첫 로그인 때 자동 생성) → `초청 MB 명단` 탭 → 수요조사 응답자(모두 MB 소지자)
