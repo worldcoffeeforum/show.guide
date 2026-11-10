@@ -841,10 +841,33 @@ window.WCF_SESSIONS = [
   "s": "13:30",
   "e": "15:30",
   "title": "Café de Honduras",
-  "speakers": [],
-  "overview": [
-   "온두라스 커피의 숨겨진 매력과 잠재적 가치를 두 가지 시선으로 만나보세요."
+  "speakers": [
+   {
+    "name": "Nester",
+    "role": "IHCAFE (온두라스커피협회) · 01. Honduras Today & Tomorrow",
+    "photo": "",
+    "bio": "온두라스 커피의 오늘과 내일. IHCAFE의 관점에서 온두라스 커피 산업의 현재와 미래를 살펴봅니다. 생산자 지원과 품질 향상, 국제 시장에서의 경쟁력 강화를 위해 IHCAFE가 수행해 온 역할을 조명하고, 지속적인 성장과 발전을 위한 새로운 전략과 미래 비전을 공유합니다."
+   },
+   {
+    "name": "Denilson Madrid",
+    "role": "Familia Madrid (마드리드 가문) · 02. A Legacy of Quality & Excellence",
+    "photo": "",
+    "bio": "품질과 탁월함을 향한 여정. 뛰어난 스페셜티 커피를 생산하기 위해 끊임없이 노력해 온 Familia Madrid의 이야기와 품질 중심의 생산 철학을 소개합니다. Cup of Excellence 등 국제 커피 품질 대회에서 인정받아 온 성과를 바탕으로 마드리드 가문의 가치와 전문성을 공유합니다."
+   },
+   {
+    "name": "정지훈 Ji Hoon Chung",
+    "role": "EGGSTONE (에그스톤) · 03. Technology Meets Origin",
+    "photo": "",
+    "bio": "기술과 데이터로 연결하는 온두라스 커피의 미래. 첨단 생두 성분 분석 기술부터 Honduras Next Gen & Legacy Auction의 기획과 개발까지, 데이터로 커피의 숨겨진 잠재력을 발견하고 생산자에게 새로운 기회를 제공하는 접근법을 공유합니다."
+   }
   ],
+  "overview": [
+   "HONDURAS: BEYOND THE CUP — 온두라스의 오늘을 맛보고, 내일을 발견하다.",
+   "온두라스는 이미 세계 스페셜티 커피 시장에서 뛰어난 품질과 경쟁력을 인정받아 왔습니다. IHCAFE(온두라스커피협회), Familia Madrid(마드리드 가문), EGGSTONE(에그스톤)이 함께 세 가지 관점에서 온두라스 커피의 현재와 미래를 조명합니다. 온두라스 커피 산업을 이끌어가는 비전, 탁월한 품질을 향한 생산자들의 노력, 그리고 기술과 데이터가 열어갈 새로운 가능성을 소개합니다.",
+   "세션의 마지막에는 Honduras Next Gen & Legacy Auction 출품 커피를 직접 경험하는 특별 커핑이 진행됩니다. 기존의 명성과 품질을 이어온 생산자부터 새롭게 주목받는 차세대 생산자까지, 각 커피의 고유한 풍미와 생산자의 이야기를 만나 보세요.",
+   "발표 3개 세션(각 10–15분) 후 특별 커핑 · 영어 진행 (한국어 통역 지원)"
+  ],
+  "speakerLabel": "발표자",
   "dow": "목"
  },
  {
