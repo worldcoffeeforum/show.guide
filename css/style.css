@@ -446,8 +446,8 @@ body.dr-open .dr-panel{transform:none}
 .how li+li{margin-top:4px}
 .how b{font-weight:600}
 .park{margin:14px 0 18px;padding:12px 14px;background:var(--soft);border-radius:var(--r);font-size:13px;line-height:1.6;color:var(--k2)}
-.rm{display:inline-flex;align-items:center;gap:8px}
-.rm::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--c)}
+.rm{display:inline-flex;align-items:baseline;gap:8px}
+.rm::before{content:"";flex:none;width:8px;height:8px;border-radius:2px;background:var(--c);align-self:flex-start;margin-top:.45em}
 
 /* 층별 약도 */
 .map.iso .rt{fill:none;stroke:#1A1A1A;stroke-width:2;stroke-dasharray:5 4}
