@@ -119,9 +119,12 @@
     var html = '<a class="back" href="session.html?id=' + esc(host.id) + '">‹ ' + esc(host.title) + '</a>' +
       '<p class="dt-c">' + esc(grp.group) + '</p><div class="pt-hd">' + logo(item) + '<div><h1 class="dt-t">' + esc(item.name) + '</h1>' + (item.sub ? '<p class="pg-m">' + esc(item.sub) + '</p>' : '') + '</div></div>' +
       '<h2 class="dt-h">' + T('브랜드 소개', 'About the Brand') + '</h2>' +
-      '<div class="dt-body"><p>' + esc(item.desc || T('더 스테이지 페어링 테이블의 ' + grp.group + '입니다.', grp.group.replace(/s$/, '') + ' of the Pairing Table at The Stage.')) + '</p></div>';
+      '<div class="dt-body">' + String(item.desc || T('더 스테이지 페어링 테이블의 ' + grp.group + '입니다.', grp.group.replace(/s$/, '') + ' of the Pairing Table at The Stage.')).split('\n').map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>';
     if (item.featured) html += '<div class="pt-ft"><h4>' + esc(item.featured.title) + '</h4>' + (item.featured.note ? '<p>' + esc(item.featured.note) + '</p>' : '') +
-      '<ol>' + item.featured.list.map(function (r) { return '<li><b>' + esc(r[0]) + '</b><span>' + esc(r[1]) + '</span></li>'; }).join('') + '</ol></div>';
+      '<ol>' + (item.featured.list || []).map(function (r) {
+        // r = [이름, 한 줄 소개, 설명(선택), 티 노트(선택), 수상(선택)]
+        return '<li><b>' + esc(r[0]) + '</b>' + (r[4] ? '<em class="ft-aw">' + esc(r[4]) + '</em>' : '') + '<span>' + esc(r[1]) + '</span>' +
+          (r[2] ? '<p class="ft-d">' + esc(r[2]) + '</p>' : '') + (r[3] ? '<small class="ft-n">' + esc(r[3]) + '</small>' : '') + '</li>'; }).join('') + '</ol></div>';
     var others = []; host.partners.forEach(function (g) { g.items.forEach(function (it) { if (it.id !== pid) others.push(it); }); });
     if (others.length) html += '<h2 class="dt-h">' + T('다른 파트너', 'Other Partners') + '</h2><ul class="pt">' + others.map(function (it) {
       return '<li><a href="session.html?partner=' + esc(it.id) + '">' + logo(it) + '<div><b>' + esc(it.name) + '</b></div><i aria-hidden="true">›</i></a></li>'; }).join('') + '</ul>';
